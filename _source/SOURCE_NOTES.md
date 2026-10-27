@@ -1,0 +1,30 @@
+# Content sources and editorial notes
+
+Imported on 2026-10-27 from Rustem Takhanov's Google Site:
+
+- https://sites.google.com/nu.edu.kz/rustem/home — degrees, thesis titles, research interests, PGP key.
+- https://sites.google.com/nu.edu.kz/rustem/publications — all 27 selected publications and their resource links.
+- https://sites.google.com/nu.edu.kz/rustem/teaching — Spring 2019 lecture materials and optimization syllabus.
+- https://sites.google.com/nu.edu.kz/rustem/links — three external resources, preserved as listed.
+
+The Google Site content was recovered from its public `data-code` embeds. Publication summaries are new concise paraphrases based on the linked papers' arXiv abstracts, PMLR, IACR CiC, JAIR, and ACL Anthology. They are editorial drafts for the author's review, not quotations. Publication dates prefer conference/journal years when verified. Minimal BibTeX records omit unverified pagination and DOIs.
+
+Additional sources:
+
+- https://research.nu.edu.kz/en/persons/rustem-takhanov/ — Assistant Professor, Department of Mathematics, institution, and portrait.
+- https://research.nu.edu.kz/files-asset/42630763/Takhanov.jpg?f=jpg&w=160 — portrait (stored locally).
+- https://cic.iacr.org/p/1/3/32 — verified email address and paper details.
+- https://scholar.google.com/citations?user=DjIrpP8AAAAJ&hl=en — author profile.
+- https://proceedings.mlr.press/v244/takhanov24a.html — UAI 2024 paper.
+- https://aclanthology.org/N18-1128/ — NAACL paper.
+- https://aclanthology.org/D17-1199/ — authors, EMNLP 2017 publication details, and abstract for “Syllable-aware Neural Language Models: A Failure to Beat Character-aware Ones.”
+- https://aclanthology.org/C18-1145/ — authors, COLING 2018 publication details, and abstract for “Reproducing and Regularizing the SCRN Model.”
+- https://jair.org/index.php/jair/article/view/11368 — word/context vectors paper.
+
+The Language modeling category was added before Other ML at the author’s request on 2026-10-27. It contains the five existing word-vector, subword-modeling, and pattern-based CRF papers, plus the EMNLP 2017 syllable-aware language-model paper and the COLING 2018 SCRN paper, bringing the total to 29 publications. The supplied Google Scholar citation link is retained alongside the syllable-aware paper’s direct ACL links.
+
+The Talks page includes the existing SOFSEM video, AISTATS slides/poster, and ICML conference materials. It also includes the AIST 2026 invited talk, “Searching for kissing configurations in R12,” added at the author's request on 2026-10-27. The title, year, and invited-talk status are confirmed by the public video metadata at https://www.youtube.com/watch?v=dEu_OmNtz8E; the conference link is https://aistconf.org/.
+
+The 24-cell illustration is an exact 2D orthogonal projection of the 8 signed basis vectors and 16 vectors (±1/2, ±1/2, ±1/2, ±1/2). Edges connect inner product 1/2; there are 24 vertices and 96 edges. It is labeled as one four-dimensional building block, not as the 841-point configuration.
+
+Potential follow-ups: author review of summaries and citation metadata; a higher-resolution portrait if desired; additional talk details and multimedia supplied by the author. External legacy resources and Google Drive sharing permissions have not all been independently verified.

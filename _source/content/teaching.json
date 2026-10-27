@@ -1,0 +1,213 @@
+[
+  {
+    "title": "Introduction",
+    "links": [
+      {
+        "label": "lecture 1",
+        "url": "https://drive.google.com/open?id=18fHItIn6UlDj_XYAE_fqoeMQl-b5NxhB"
+      }
+    ]
+  },
+  {
+    "title": "Statistical learning theory formulation of supervised learning",
+    "links": [
+      {
+        "label": "lecture 2",
+        "url": "https://drive.google.com/open?id=1L_sxnY5JhSHyi8ysU5b0ZazEiIyBhFYB"
+      }
+    ]
+  },
+  {
+    "title": "Linear regression",
+    "links": [
+      {
+        "label": "lecture 3",
+        "url": "https://drive.google.com/open?id=1gl585EQQJlhTx5WfT8yVlfmnFwdkZ7vp"
+      },
+      {
+        "label": "reading",
+        "url": "http://www.eecs189.org/static/notes/n2.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Logistic regression",
+    "links": [
+      {
+        "label": "lecture 4",
+        "url": "https://drive.google.com/open?id=1kHh0R395NckO4Vq0wyfzOY9KrrKGgnMX"
+      }
+    ]
+  },
+  {
+    "title": "Separating hyperplanes (SVM)",
+    "links": [
+      {
+        "label": "lecture 5",
+        "url": "https://drive.google.com/open?id=1HMukx50TW3L6eaQAMFDywdb0X-w7DbcW"
+      },
+      {
+        "label": "reading",
+        "url": "http://web.mit.edu/zoya/www/SVM.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Separating hyperplanes (SVM)",
+    "links": [
+      {
+        "label": "lecture 6",
+        "url": "https://drive.google.com/open?id=1Q0xMhfPNGQBGOdjAVT-8rG5UEzZGyFLc"
+      },
+      {
+        "label": "reading",
+        "url": "http://cs229.stanford.edu/notes/cs229-notes3.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Model assessment",
+    "links": [
+      {
+        "label": "lecture 7",
+        "url": "https://drive.google.com/open?id=1_o4-YvYsayrINOL6D9B7X-IFXPqu1zos"
+      },
+      {
+        "label": "1",
+        "url": "https://www.youtube.com/watch?v=_2ij6eaaSl0"
+      },
+      {
+        "label": "2",
+        "url": "https://www.youtube.com/watch?v=nZAM5OXrktY"
+      }
+    ]
+  },
+  {
+    "title": "Model selection",
+    "links": [
+      {
+        "label": "lecture 8",
+        "url": "https://drive.google.com/open?id=1T6789q_j9BXMMoymuDGCnqdC807wYQ9H"
+      }
+    ]
+  },
+  {
+    "title": "Tikhonov regularization",
+    "links": [
+      {
+        "label": "lecture 9",
+        "url": "https://drive.google.com/open?id=1RCBpCU2sDlUehNI4Bc695zi2mLhzlOX4"
+      }
+    ]
+  },
+  {
+    "title": "l1-regularization (LASSO)",
+    "links": [
+      {
+        "label": "lecture 10",
+        "url": "https://drive.google.com/open?id=1ffTIRf70LWYCjtTgNZl2pxzPwcLC0hqu"
+      },
+      {
+        "label": "reading",
+        "url": "http://www.eecs189.org/static/notes/n23.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Kernel trick",
+    "links": [
+      {
+        "label": "lecture 11",
+        "url": "https://drive.google.com/open?id=1FqGpCqIj54QuwBUuIChd223x6ycHMiYn"
+      },
+      {
+        "label": "reading",
+        "url": "http://mlss.tuebingen.mpg.de/2015/slides/gretton/part_1.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Midterm",
+    "links": [
+      {
+        "label": "problems",
+        "url": "https://drive.google.com/open?id=1Bi1zQTmZctbx4K3kBPc4yZ8T0JSK2zna"
+      }
+    ]
+  },
+  {
+    "title": "Kernel trick",
+    "links": [
+      {
+        "label": "lecture 12",
+        "url": "https://drive.google.com/open?id=1qqZGgxDKkgYROt8-z-xJFdWRJHgSa5o6"
+      },
+      {
+        "label": "reading",
+        "url": "https://ocw.mit.edu/courses/sloan-school-of-management/15-097-prediction-machine-learning-and-statistics-spring-2012/lecture-notes/MIT15_097S12_lec13.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Feedforward neural networks",
+    "links": [
+      {
+        "label": "lecture 13",
+        "url": "https://drive.google.com/open?id=1BW-KvoyKCfMJtxevcBf4kSG0kwH9mpWm"
+      },
+      {
+        "label": "reading",
+        "url": "http://www.eecs189.org/static/notes/n14.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Feedforward neural networks",
+    "links": [
+      {
+        "label": "lecture 14",
+        "url": "https://drive.google.com/open?id=1ShF3upp4B-Cn2KejquMgSD3-f48spxuq"
+      }
+    ]
+  },
+  {
+    "title": "Dimensionality reduction",
+    "links": [
+      {
+        "label": "lecture 15",
+        "url": "https://drive.google.com/open?id=1PQKi3MI33OYMPKgGLa8XAKY0TWTqCNR1"
+      },
+      {
+        "label": "reading",
+        "url": "http://www.eecs189.org/static/notes/n6.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Dimensionality reduction",
+    "links": [
+      {
+        "label": "lecture 16",
+        "url": "https://drive.google.com/open?id=1ZBc-c6Jy6HVn_e1AoIN_WE2N-czC5zMd"
+      }
+    ]
+  },
+  {
+    "title": "Concentration inequalities",
+    "links": [
+      {
+        "label": "reading",
+        "url": "https://ocw.mit.edu/courses/mathematics/18-465-topics-in-statistics-statistical-learning-theory-spring-2007/lecture-notes/l5.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Concentration inequalities",
+    "links": [
+      {
+        "label": "reading",
+        "url": "https://ocw.mit.edu/courses/mathematics/18-465-topics-in-statistics-statistical-learning-theory-spring-2007/lecture-notes/l6.pdf"
+      }
+    ]
+  }
+]

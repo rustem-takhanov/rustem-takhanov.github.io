@@ -1,0 +1,759 @@
+[
+  {
+    "slug": "sample-monotonization",
+    "title": "On the sample monotonization problem",
+    "year": 2010,
+    "venue": "Computational Mathematics and Mathematical Physics",
+    "topic": "Other ML",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Studies the sample monotonization problem, connecting ordered data with algorithmic questions in learning.",
+    "detail": "The original publication is accompanied by an English-language paper and an implementation. Both resources are retained here.",
+    "resources": [
+      {
+        "label": "Paper",
+        "url": "https://drive.google.com/open?id=1fJaBobW6-wdl078X4KssbJaZr3KUSeqM"
+      },
+      {
+        "label": "Journal",
+        "url": "http://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=zvmmf&paperid=4912&option_lang=eng"
+      },
+      {
+        "label": "Code",
+        "url": "https://drive.google.com/file/d/1ngIgkQT-HSGssVvDvfyicdEpiwVKen7i/view?usp=sharing"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "minimum-cost-homomorphism",
+    "title": "A Dichotomy Theorem for the General Minimum Cost Homomorphism Problem",
+    "year": 2010,
+    "venue": "STACS 2010",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "An algebraic classification of the computational complexity of the general minimum cost homomorphism problem.",
+    "detail": "The problem combines constraint satisfaction with costs for assigning values to variables. Algebraic methods identify the boundary between tractable cases and NP-hard cases, settling a general dichotomy conjecture.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/0708.3226"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/0708.3226"
+      }
+    ],
+    "arxiv": "0708.3226"
+  },
+  {
+    "slug": "extensions-minimum-cost-homomorphism",
+    "title": "Extensions of the minimum cost homomorphism problem",
+    "year": 2010,
+    "venue": "COCOON 2010",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Extends minimum cost homomorphisms to a broader optimization framework with conservative constraint languages.",
+    "detail": "A family of cost functions unifies minimum cost homomorphisms and maximum solution problems. Under restrictions on the cost functions, the paper proves a complexity dichotomy, including one for the conservative maximum solution problem.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1210.2260"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1210.2260"
+      }
+    ],
+    "arxiv": "1210.2260"
+  },
+  {
+    "slug": "pattern-based-crfs",
+    "title": "Inference algorithms for pattern-based CRFs on sequence data",
+    "year": 2013,
+    "venue": "ICML 2013",
+    "topic": "Language modeling",
+    "authors": [
+      "Rustem Takhanov",
+      "Vladimir Kolmogorov"
+    ],
+    "summary": "Efficient inference for sequence models with pattern-based potentials: partition functions, marginals, MAP inference, and sampling.",
+    "detail": "The model assigns energy to occurrences of predefined patterns along a sequence. The algorithms improve earlier complexity bounds and make these conditional random fields more practical for sequence tagging.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1210.0508"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1210.0508"
+      }
+    ],
+    "arxiv": "1210.0508"
+  },
+  {
+    "slug": "crfs-and-grammars",
+    "title": "Combining pattern-based CRFs and weighted context-free grammars",
+    "year": 2014,
+    "venue": "Preprint",
+    "topic": "Language modeling",
+    "authors": [
+      "Rustem Takhanov",
+      "Vladimir Kolmogorov"
+    ],
+    "summary": "Combines local pattern-based sequence models with the longer-range structure of weighted context-free grammars.",
+    "detail": "The resulting grammatical pattern-based CRF captures complementary forms of interaction. The paper analyzes inference complexity and develops polynomial-time algorithms, with faster inference for a special family of interaction grammars.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1404.5475"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1404.5475"
+      }
+    ],
+    "arxiv": "1404.5475"
+  },
+  {
+    "slug": "hybrid-csp-structural-restrictions",
+    "title": "Effectiveness of Structural Restrictions for Hybrid CSPs",
+    "year": 2015,
+    "venue": "ISAAC 2015",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Vladimir Kolmogorov",
+      "Michal Rolinek",
+      "Rustem Takhanov"
+    ],
+    "summary": "Characterizes when structural restrictions can make an otherwise hard constraint satisfaction problem tractable.",
+    "detail": "The hybrid setting restricts both the instance structure and the allowed constraint language. Lifted languages connect this setting to algebraic CSP methods, yielding characterizations for several families of structural restrictions.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1504.07067"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1504.07067"
+      }
+    ],
+    "arxiv": "1504.07067"
+  },
+  {
+    "slug": "hybrid-vcsps",
+    "title": "Hybrid VCSPs with crisp and conservative valued templates",
+    "year": 2017,
+    "venue": "ISAAC 2017",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Studies hybrid constraint satisfaction through crisp and conservative valued templates and the notion of wide tractability.",
+    "detail": "Lifted languages give a necessary condition for tractability of hybrid problems. This work investigates when that condition is also sufficient and relates the answer to finite relational structures and Siggers polymorphisms.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1506.06540"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1506.06540"
+      }
+    ],
+    "arxiv": "1506.06540"
+  },
+  {
+    "slug": "induced-fixed-template-csps",
+    "title": "On the induced problem for fixed-template CSPs",
+    "year": 2024,
+    "venue": "SOFSEM 2024",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Investigates how algebraic structure in a CSP solution space can be encoded as another fixed-template problem.",
+    "detail": "The paper studies representations of solution sets as subalgebras of products of specified algebras. It develops reductions and tractability results using a CSP with an input prototype. A recorded presentation is available below.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1708.08292"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1708.08292"
+      },
+      {
+        "label": "SOFSEM 2024",
+        "url": "https://link.springer.com/chapter/10.1007/978-3-031-52113-3_34"
+      },
+      {
+        "label": "Video",
+        "url": "https://www.youtube.com/watch?v=Dc2SLohk2nQ"
+      }
+    ],
+    "arxiv": "1708.08292",
+    "video": "Dc2SLohk2nQ"
+  },
+  {
+    "slug": "patterns-versus-characters",
+    "title": "Patterns versus Characters in Subword-aware Neural Language Modeling",
+    "year": 2017,
+    "venue": "ICONIP 2017",
+    "topic": "Language modeling",
+    "authors": [
+      "Rustem Takhanov",
+      "Zhenisbek Assylbekov"
+    ],
+    "summary": "Uses statistically informative subword patterns as building blocks for word representations and neural language modeling.",
+    "detail": "A regularized pattern-based CRF selects subwords that capture character n-gram structure. Language models built from these patterns are compared with character-based approaches, including a simple sum-of-embeddings architecture.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1709.00541"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1709.00541"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/zh3nis/pat-sum"
+      }
+    ],
+    "arxiv": "1709.00541"
+  },
+  {
+    "slug": "syllable-aware-language-models",
+    "title": "Syllable-aware Neural Language Models: A Failure to Beat Character-aware Ones",
+    "year": 2017,
+    "venue": "EMNLP 2017",
+    "topic": "Language modeling",
+    "authors": [
+      "Zhenisbek Assylbekov",
+      "Rustem Takhanov",
+      "Bagdat Myrzakhmetov",
+      "Jonathan N. Washington"
+    ],
+    "summary": "Compares syllable-based and character-based word representations for recurrent neural language models.",
+    "detail": "Syllable segmentation does not improve modeling quality over character segmentation in the reported experiments. The best syllable-aware model nevertheless achieves comparable performance with 18–33% fewer parameters and trains 1.2–2.2 times faster.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://aclanthology.org/D17-1199.pdf"
+      },
+      {
+        "label": "ACL Anthology",
+        "url": "https://aclanthology.org/D17-1199/"
+      },
+      {
+        "label": "Google Scholar",
+        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DjIrpP8AAAAJ&citation_for_view=DjIrpP8AAAAJ:8k81kl-MbHgC"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "reusing-subword-weights",
+    "title": "Reusing Weights in Subword-aware Neural Language Models",
+    "year": 2018,
+    "venue": "NAACL 2018",
+    "topic": "Language modeling",
+    "authors": [
+      "Zhenisbek Assylbekov",
+      "Rustem Takhanov"
+    ],
+    "summary": "Explores weight sharing in subword-aware language models to reduce model size while improving selected architectures.",
+    "detail": "The study compares character-, syllable-, and morpheme-aware models. It develops a bottom-up rule for tying embedding layers and shows that suitable reuse can improve morpheme-aware models while substantially reducing their parameter counts.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://aclanthology.org/N18-1128.pdf"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "regularizing-scrn",
+    "title": "Reproducing and Regularizing the SCRN Model",
+    "year": 2018,
+    "venue": "COLING 2018",
+    "topic": "Language modeling",
+    "authors": [
+      "Olzhas Kabdolov",
+      "Zhenisbek Assylbekov",
+      "Rustem Takhanov"
+    ],
+    "summary": "Reproduces the Structurally Constrained Recurrent Network and studies regularization for neural language modeling.",
+    "detail": "The experiments evaluate dropout, variational dropout, and weight tying. With suitable regularization and optimization, SCRN performs comparably to LSTM on English data and better on the tested non-English data, with results depending on the regularization setting.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://aclanthology.org/C18-1145.pdf"
+      },
+      {
+        "label": "ACL Anthology",
+        "url": "https://aclanthology.org/C18-1145/"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "context-and-word-vectors",
+    "title": "Context Vectors are Reflections of Word Vectors in Half the Dimensions",
+    "year": 2019,
+    "venue": "Journal of Artificial Intelligence Research",
+    "topic": "Language modeling",
+    "authors": [
+      "Zhenisbek Assylbekov",
+      "Rustem Takhanov"
+    ],
+    "summary": "Explains a geometric relationship between word and context embeddings: reflection in approximately half the dimensions.",
+    "detail": "Starting from probabilistic assumptions about word vectors and text generation, the analysis connects the pointwise mutual information matrix to a random symmetric Gaussian ensemble. It also motivates a principled way to tie weights in the SGNS model.",
+    "resources": [
+      {
+        "label": "JAIR",
+        "url": "https://jair.org/index.php/jair/article/view/11368"
+      },
+      {
+        "label": "IJCAI-PRICAI2020",
+        "url": "https://www.ijcai.org/Proceedings/2020/0718.pdf"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "dimension-reduction-distributions",
+    "title": "Reducing the dimensionality of data using tempered distributions",
+    "year": 2023,
+    "venue": "Digital Signal Processing",
+    "topic": "Other ML",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Reformulates dimension reduction through tempered distributions supported on low-dimensional subspaces.",
+    "detail": "The formulation connects unsupervised and sufficient dimension reduction. A penalty encourages low-dimensional support, leading to an alternating optimization method and a practical approximation based on maximum mean discrepancy.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/1903.05083"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/1903.05083"
+      },
+      {
+        "label": "Digital Signal Processing",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S1051200422004365"
+      }
+    ],
+    "arxiv": "1903.05083"
+  },
+  {
+    "slug": "csp-densification-sparsification",
+    "title": "The algebraic structure of the densification and the sparsification tasks for CSPs",
+    "year": 2022,
+    "venue": "Constraints",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "An algebraic study of adding implied constraints and finding compact equivalent descriptions of CSP instances.",
+    "detail": "A densification operator generates every constraint satisfied by all solutions. Implicational systems connect this closure operation to sparsification, and the Boolean case is characterized using bounded-width constraint languages.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2104.05065"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2104.05065"
+      },
+      {
+        "label": "Constraints",
+        "url": "https://link.springer.com/article/10.1007/s10601-022-09340-1"
+      }
+    ],
+    "arxiv": "2104.05065"
+  },
+  {
+    "slug": "mercer-uniform-convergence",
+    "title": "On the speed of uniform convergence in Mercer’s theorem",
+    "year": 2023,
+    "venue": "Journal of Mathematical Analysis and Applications",
+    "topic": "Kernel methods",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Quantifies how quickly truncated Mercer expansions converge uniformly to a positive definite kernel.",
+    "detail": "The convergence estimates depend on eigenvalue tails and kernel smoothness. The results also give spectral information about integral operators whose roots and other powers have continuous kernels.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2205.00487"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2205.00487"
+      },
+      {
+        "label": "Journal of Mathematical Analysis and Applications",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022247X22007326?via%3Dihub"
+      }
+    ],
+    "arxiv": "2205.00487"
+  },
+  {
+    "slug": "generalized-pattern-partition",
+    "title": "Computing a partition function of a generalized pattern-based energy over a semiring",
+    "year": 2023,
+    "venue": "Theory of Computing Systems",
+    "topic": "Constraint satisfaction",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Algorithms for partition functions and minimization in generalized pattern-based sequence models over semirings.",
+    "detail": "The work studies ordered-variable valued CSPs with constraints on adjacent segments. Closure properties of the constraint language control the complexity of inference and reveal useful tractable cases.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2305.17526"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2305.17526"
+      },
+      {
+        "label": "Theory of Computing Systems",
+        "url": "https://link.springer.com/article/10.1007/s00224-023-10128-w"
+      }
+    ],
+    "arxiv": "2305.17526"
+  },
+  {
+    "slug": "autoencoders-jacobian-rank",
+    "title": "Autoencoders for a manifold learning problem with a Jacobian rank constraint",
+    "year": 2023,
+    "venue": "Pattern Recognition",
+    "topic": "Other ML",
+    "authors": [
+      "Rustem Takhanov",
+      "Y. Sultan Abylkairov",
+      "Maxat Tezekbayev"
+    ],
+    "summary": "Uses Jacobian rank constraints to encourage autoencoders to learn low-dimensional manifolds.",
+    "detail": "Manifold learning is formulated as finding a correcting map onto a hidden manifold. A Jacobian penalty and a curvature term supplement the architectural bottleneck, with experiments on synthetic and real datasets.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2306.14194"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2306.14194"
+      },
+      {
+        "label": "Pattern Recognition",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0031320323004752"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/cvfrs/as"
+      }
+    ],
+    "arxiv": "2306.14194"
+  },
+  {
+    "slug": "gradient-descent-high-frequency",
+    "title": "Gradient Descent Fails to Learn High-frequency Functions and Modular Arithmetic",
+    "year": 2025,
+    "venue": "Machine Learning",
+    "topic": "Other ML",
+    "authors": [
+      "Rustem Takhanov",
+      "Maxat Tezekbayev",
+      "Artur Pak",
+      "Arman Bolatov",
+      "Zhenisbek Assylbekov"
+    ],
+    "summary": "Analyzes why gradient-based methods struggle with high-frequency periodic functions and modular multiplication.",
+    "detail": "For these target classes, the gradient can carry very little information about the function being learned. The analysis relates this difficulty to gradient variance and the approximate orthogonality of candidate target functions.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2310.12660"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2310.12660"
+      },
+      {
+        "label": "Machine Learning (MLJ)",
+        "url": "https://link.springer.com/article/10.1007/s10994-025-06747-8"
+      }
+    ],
+    "arxiv": "2310.12660"
+  },
+  {
+    "slug": "multi-layer-random-features",
+    "title": "Multi-layer random features and the approximation power of neural networks",
+    "year": 2024,
+    "venue": "UAI 2024",
+    "topic": "Kernel methods",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Connects neural network approximation guarantees to the RKHS of the neural network Gaussian process kernel.",
+    "detail": "A random multilayer representation, followed by training only its final layer, provides constructive approximation guarantees. The required network width depends on the RKHS norm, and the analysis is compared with Barron-type bounds and numerical experiments.",
+    "resources": [
+      {
+        "label": "PMLR",
+        "url": "https://proceedings.mlr.press/v244/takhanov24a.html"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/k-nic/NNGP"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "pairwise-independence",
+    "title": "Almost pairwise independence and resilience to deep learning attacks",
+    "year": 2024,
+    "venue": "IACR Communications in Cryptology",
+    "topic": "Other ML",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Studies how almost pairwise independence limits the information available to gradient-based learning attacks.",
+    "detail": "Gradient variance bounds explain why certain cryptographic function classes are difficult to learn under regular parameterizations. Experiments with Learning with Errors mappings explore how the theory appears during training.",
+    "resources": [
+      {
+        "label": "Paper",
+        "url": "https://cic.iacr.org/p/1/3/32"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/k-nic/API_vs_grad"
+      }
+    ],
+    "arxiv": null
+  },
+  {
+    "slug": "kernel-entropy",
+    "title": "Non-asymptotic spectral bounds on the ε-entropy of kernel classes",
+    "year": 2024,
+    "venue": "Preprint",
+    "topic": "Kernel methods",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Spectral bounds on the ε-entropy of kernel classes, linking approximation complexity to kernel eigenvalues.",
+    "detail": "The paper studies upper and lower bounds for unit balls of reproducing kernel Hilbert spaces. Eigenvalue decay and convergence of truncated Mercer expansions govern the bounds in different function norms.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2204.04512"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2204.04512"
+      }
+    ],
+    "arxiv": "2204.04512"
+  },
+  {
+    "slug": "gradient-informativeness",
+    "title": "The informativeness of the gradient revisited",
+    "year": 2025,
+    "venue": "Neural Networks",
+    "topic": "Other ML",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Relates the information in a learning gradient to pairwise independence and the collision entropy of the input distribution.",
+    "detail": "The resulting variance bound is applied to Learning with Errors mappings and high-frequency functions. Experiments examine the behavior of gradient-based attacks in these settings.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2505.22158"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2505.22158"
+      },
+      {
+        "label": "Neural Networks",
+        "url": "https://doi.org/10.1016/j.neunet.2025.107517"
+      }
+    ],
+    "arxiv": "2505.22158"
+  },
+  {
+    "slug": "intrinsic-dimensions",
+    "title": "On the Intrinsic Dimensions of Data in Kernel Learning",
+    "year": 2026,
+    "venue": "AISTATS 2026",
+    "topic": "Kernel methods",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "How does the geometry of data influence kernel learning? Two notions of intrinsic dimension offer complementary answers.",
+    "detail": "The analysis connects kernel-induced Minkowski dimension, Kolmogorov widths, and eigenvalue decay. It derives learning guarantees, proposes a sample-based estimation method, and shows that effective and geometric dimensions can differ on fractal domains.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2601.16139"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2601.16139"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/k-nic/intrinsic"
+      },
+      {
+        "label": "Poster",
+        "url": "https://drive.google.com/file/d/10qGlqvlt1Ca5d-7m6GhQIAPm-2oAFvP6/view?usp=sharing"
+      },
+      {
+        "label": "Slides",
+        "url": "https://drive.google.com/file/d/1Au39jfvCtMAQbHZe1Z36hMUieVbHF5f8/view?usp=sharing"
+      }
+    ],
+    "arxiv": "2601.16139",
+    "poster": "10qGlqvlt1Ca5d-7m6GhQIAPm-2oAFvP6"
+  },
+  {
+    "slug": "conditional-krr",
+    "title": "Conditional KRR: Injecting Unpenalized Features into Kernel Methods with Applications to Kernel Thresholding",
+    "year": 2026,
+    "venue": "ICML 2026",
+    "topic": "Kernel methods",
+    "authors": [
+      "Rustem Takhanov",
+      "Zhenisbek Assylbekov"
+    ],
+    "summary": "Combines unpenalized features with kernel ridge regression, giving a statistical framework for learning the residual component.",
+    "detail": "A residual kernel links conditional KRR to ordinary KRR and yields a test-risk comparison. Principal eigenfunctions and random features provide two related ways to choose the unpenalized component.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2605.26067"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2605.26067"
+      },
+      {
+        "label": "ICML 2026",
+        "url": "https://icml.cc/virtual/2026/poster/65932"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/k-nic/Conditional-KRR"
+      }
+    ],
+    "arxiv": "2605.26067"
+  },
+  {
+    "slug": "signed-johnson-graphs",
+    "title": "Classification of independent sets in signed Johnson graphs and applications to kissing arrangements",
+    "year": 2026,
+    "venue": "Preprint",
+    "topic": "Kissing numbers",
+    "authors": [
+      "Rustem Takhanov",
+      "Stanislav Yun"
+    ],
+    "summary": "Classifies maximum independent sets in signed Johnson graphs and reveals a rich family of kissing arrangements.",
+    "detail": "An enumeration up to signed permutations finds 1,579 non-isometric 840-point arrangements in twelve dimensions. Structural results connect these independent sets with constant-weight codes and Steiner quadruple systems.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2606.03299"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2606.03299"
+      }
+    ],
+    "arxiv": "2606.03299"
+  },
+  {
+    "slug": "841st-sphere",
+    "title": "Structure of kissing arrangements in ℝ¹² and a place for the 841st sphere",
+    "year": 2026,
+    "venue": "Preprint",
+    "topic": "Kissing numbers",
+    "authors": [
+      "Rustem Takhanov",
+      "Zhenisbek Assylbekov",
+      "Stanislav Yun"
+    ],
+    "summary": "Uses flexibility in 840-point arrangements to guide optimization toward an 841-point kissing arrangement in twelve dimensions.",
+    "detail": "The construction keeps 720 bridge vectors fixed while varying two 60-point blocks. This geometric freedom provides structured initializations for logarithmic Riesz energy optimization and leads to a numerical 841-point configuration.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2606.18984"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2606.18984"
+      }
+    ],
+    "arxiv": "2606.18984"
+  },
+  {
+    "slug": "quaternionic-kissing",
+    "title": "A quaternionic construction behind 841-point kissing arrangement in ℝ¹²",
+    "year": 2026,
+    "venue": "Preprint",
+    "topic": "Kissing numbers",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "A quaternionic viewpoint reveals the structure behind a numerical 841-point kissing arrangement in twelve dimensions.",
+    "detail": "Viewing twelve-dimensional space as three quaternionic factors leads to a new 840-point model built from three orthogonal 24-cells and two 384-point families. Asymmetry between the factors helps explain the geometry of the numerical 841-point arrangement.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2609.09179"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2609.09179"
+      }
+    ],
+    "arxiv": "2609.09179",
+    "interactive": "24cell"
+  },
+  {
+    "slug": "kissing-dimensions-25-31",
+    "title": "New lower bounds for kissing numbers in dimensions 25, 26, 27, 29 and 31",
+    "year": 2026,
+    "venue": "Manuscript",
+    "topic": "Kissing numbers",
+    "authors": [
+      "Rustem Takhanov",
+      "Stanislav Yun"
+    ],
+    "summary": "New constructions improve lower bounds for kissing numbers in dimensions 25, 26, 27, 29, and 31.",
+    "detail": "The manuscript with Stanislav Yun is available through the linked GitHub repository. The repository provides the entry point for the paper and its accompanying computational materials.",
+    "resources": [
+      {
+        "label": "Paper & repository",
+        "url": "https://github.com/k-nic/kissing_d25-31/blob/main/paper.pdf"
+      }
+    ],
+    "arxiv": null
+  }
+]
