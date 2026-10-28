@@ -9,6 +9,7 @@ A custom, dependency-free static site inspired by the AcademicPages layout. The 
 - `content/teaching.json`: the lecture archive from the original website.
 - `content/site.json`: the intended GitHub Pages URL used in the downloadable package's canonical links and sitemap.
 - `build.py`: page templates, profile information, and general page content.
+- `illustrations/`: original SVG research diagrams, captions, and source links for all 29 paper pages. Generated figures are written to `dist/assets/papers/` during the build; no extra dependencies are required.
 - `assets/style.css`: typography, color, spacing, and responsive layout.
 - `assets/site.js`: publication filters, citation copying, opt-in media previews, and the interactive 24-cell.
 
@@ -18,7 +19,7 @@ Publication pages are real static HTML and work without JavaScript. JavaScript p
 
 ## GitHub Pages
 
-Extract `dist/downloads/rustem-takhanov-github-pages.zip` and upload its contents to the root of the intended repository. Set Settings → Pages → Deploy from a branch → main → /(root). Preserve `.nojekyll`. The package is configured for `https://k-nic.github.io/`; change `content/site.json` before exporting for a different public URL. The archive includes canonical URLs, a sitemap, and robots.txt; the private Sites preview remains unchanged. No GitHub repository was created or modified. See `GITHUB_PAGES.md` for the publishing and indexing steps.
+Extract `dist/downloads/rustem-takhanov-github-pages.zip` and upload its contents to the root of the intended repository. Set Settings → Pages → Deploy from a branch → main → /(root). Preserve `.nojekyll`. The package is configured for `https://rustem-takhanov.github.io/`; change `content/site.json` before exporting for a different public URL. The archive includes canonical URLs, a sitemap, and robots.txt; the private Sites preview remains unchanged. No GitHub repository was created or modified. See `GITHUB_PAGES.md` for the publishing and indexing steps.
 
 The download includes editable source in `_source/`. Running its build script creates `_source/dist/downloads/rustem-takhanov-github-pages.zip`; extract and upload that new package to publish an update with refreshed sitemap and canonical URLs.
 

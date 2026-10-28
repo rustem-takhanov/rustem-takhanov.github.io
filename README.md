@@ -1,18 +1,29 @@
 # Rustem Takhanov — GitHub Pages publishing guide
 
 This folder contains the preliminary academic website: 29 publications, Talks
-(including AIST 2026), Links, the teaching archive, all local images and assets,
+(including AIST 2026), Links, the teaching archive, all local images and assets (including 29 original research illustrations),
 and editable source in `_source/`. The site is already built; no installation
 or build command is needed to publish it. Linked papers, videos, and other
 external resources remain hosted by their original providers.
 
-The package is configured for **https://k-nic.github.io/** and includes canonical
+The package is configured for **https://rustem-takhanov.github.io/** and includes canonical
 URLs for all 34 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
+
+## If the site is currently at /takhanov/
+
+Open the `takhanov` repository owned by `rustem-takhanov`, then go to
+**Settings → General**. Change **Repository name** to
+**rustem-takhanov.github.io** and click **Rename**. Upload the contents of this
+updated package to the renamed repository and commit to main. Under
+**Settings → Pages**, confirm **Deploy from a branch → main → /(root)**.
+The site should publish at **https://rustem-takhanov.github.io/** after the
+Pages deployment finishes. Renaming the repository preserves its files.
 
 ## Publish using the GitHub website
 
-1. Sign in to your **k-nic** GitHub account and create a repository named
-   **k-nic.github.io**. Choose **Public**, enable **Add README**, and create it.
+1. Sign in to GitHub and create a repository with **rustem-takhanov** as its
+   owner (your account or organization). Name the repository exactly
+   **rustem-takhanov.github.io**. Choose **Public**, enable **Add README**, and create it.
    If that repository already exists, use the existing repository and preserve
    any files or settings you still need.
 2. Extract the downloaded ZIP on your computer.
@@ -31,7 +42,7 @@ URLs for all 34 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
 6. Open **Settings → Pages**. Under **Build and deployment**, choose
    **Deploy from a branch**, select **main** and **/(root)**, then **Save**.
    Enable **Enforce HTTPS** if the option is available and not already enabled.
-7. Allow up to ten minutes, then open **https://k-nic.github.io/** in a private
+7. Allow up to ten minutes, then open **https://rustem-takhanov.github.io/** in a private
    browser window to confirm that visitors can see it without signing in.
    Also check `/publications/`, `/talks/`, and `/sitemap.xml`.
    If publishing fails, inspect the repository's **Actions** tab for the
@@ -40,13 +51,13 @@ URLs for all 34 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
 ## Help Google discover the website
 
 1. Open https://search.google.com/search-console/ and add a **URL-prefix**
-   property for **https://k-nic.github.io/**.
+   property for **https://rustem-takhanov.github.io/**.
 2. Choose **HTML file** verification. Download the file Google supplies, upload
    it unchanged to the repository root alongside `index.html`, and commit it.
    After GitHub publishes the file, click **Verify** in Search Console. Keep
    that file in the repository during future updates.
 3. In Search Console's **Sitemaps** report, submit **sitemap.xml**.
-4. Use **URL Inspection** for **https://k-nic.github.io/** and select
+4. Use **URL Inspection** for **https://rustem-takhanov.github.io/** and select
    **Request indexing**. You can also request indexing for the Publications page.
 5. Add a link to the new website on your existing Google Site and update the
    website link on your GitHub and Google Scholar profiles when ready.

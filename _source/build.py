@@ -5,12 +5,16 @@ from html import escape
 from urllib.parse import quote
 from collections import defaultdict
 import json, math, shutil, zipfile, re
+from illustrations import build_illustrations
 
 ROOT=Path(__file__).resolve().parent
 DIST=ROOT/'dist'
 PUBS=json.loads((ROOT/'content/publications.json').read_text())
 GITHUB_SITE_URL=json.loads((ROOT/'content/site.json').read_text())['github_pages_url'].rstrip('/')+'/'
 BY_SLUG={p['slug']:p for p in PUBS}
+FIGURES=build_illustrations()
+if set(FIGURES)!=set(BY_SLUG):
+ raise ValueError('Every publication must have exactly one illustration: '+str(set(FIGURES)^set(BY_SLUG)))
 E=escape
 R='@ROOT@'
 
@@ -111,8 +115,13 @@ def bibtex(p):
  fields.append(('url',p['resources'][0]['url']))
  return '@'+kind+'{takhanov'+str(p['year'])+p['slug'].replace('-','')+',\n'+',\n'.join('  '+k+' = {'+v+'}' for k,v in fields)+'\n}'
 
+def paper_illustration(p):
+ f=FIGURES[p['slug']]
+ src=R+'assets/papers/'+p['slug']+'.svg'
+ return '<figure class="paper-visual"><a class="paper-visual-image" href="'+src+'" target="_blank" rel="noopener" aria-label="View full-size illustration for '+E(p['title'],quote=True)+'"><img src="'+src+'" width="1000" height="480" alt="'+E(f['alt'],quote=True)+'" decoding="async"></a><figcaption><div class="paper-visual-meta"><span>'+E(f['kind'])+'</span><a href="'+src+'" target="_blank" rel="noopener">View full size '+icon('external')+'</a></div><p>'+E(f['caption'])+' <a class="visual-source" href="'+E(f['source_url'],quote=True)+'" target="_blank" rel="noopener noreferrer">Research source '+icon('external')+'</a></p></figcaption></figure>'
+
 def publication_detail(p):
- body='<a class="back-link" href="'+R+'publications/">'+icon('back')+' All publications</a><article><header class="article-head"><div class="article-meta"><span>'+str(p['year'])+'</span><span>·</span><span>'+E(p['venue'])+'</span><span class="tag">'+p['topic']+'</span></div><h1 class="article-title">'+E(p['title'])+'</h1><p class="authors">'+authors(p)+'</p>'+paper_actions(p)+'</header><section class="article-text"><h2>About this paper</h2><p class="lead">'+E(p['summary'])+'</p><p>'+E(p['detail'])+'</p></section>'
+ body='<a class="back-link" href="'+R+'publications/">'+icon('back')+' All publications</a><article><header class="article-head"><div class="article-meta"><span>'+str(p['year'])+'</span><span>·</span><span>'+E(p['venue'])+'</span><span class="tag">'+p['topic']+'</span></div><h1 class="article-title">'+E(p['title'])+'</h1><p class="authors">'+authors(p)+'</p>'+paper_actions(p)+'</header>'+paper_illustration(p)+'<section class="article-text"><h2>About this paper</h2><p class="lead">'+E(p['summary'])+'</p><p>'+E(p['detail'])+'</p></section>'
  if p.get('interactive'):
   body+='''<section class="article-section"><h2>A building block in four dimensions</h2><div class="geometry-panel"><div class="geometry-top"><strong>The regular 24-cell</strong><span>24 vertices &nbsp;·&nbsp; 96 edges</span></div><canvas id="cell-canvas" role="img" aria-label="An adjustable two-dimensional orthogonal projection of a regular 24-cell in four dimensions. Gold points are the eight signed coordinate vectors; green points are the sixteen half-integer vertices."></canvas><div class="geometry-controls"><label for="rotation">Rotation <input id="rotation" type="range" min="0" max="360" value="41" aria-label="Four-dimensional rotation in degrees"></label><button id="play-rotation" aria-pressed="false">Play</button><button id="reset-rotation">Reset</button></div></div><p class="geometry-caption">Rotate a 2D orthogonal projection of the 24-cell in ℝ⁴. Gold vertices are the eight signed coordinate vectors; green vertices are the sixteen vectors (±½, ±½, ±½, ±½). The projection illustrates one four-dimensional building block of the paper’s construction.</p></section>'''
  if p.get('video'):body+='<section class="article-section"><h2>Recorded presentation</h2>'+video_block(p)+'</section>'
@@ -153,6 +162,8 @@ def teaching():
 def main():
  DIST.mkdir(exist_ok=True);(DIST/'assets').mkdir(exist_ok=True)
  for f in (ROOT/'assets').iterdir():shutil.copy2(f,DIST/'assets'/f.name)
+ (DIST/'assets/papers').mkdir(exist_ok=True)
+ for slug,figure in FIGURES.items():(DIST/'assets/papers'/f'{slug}.svg').write_text(figure['svg'])
  (DIST/'assets/cell.svg').write_text(cell_svg())
  (DIST/'assets/favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="32" fill="#246c67"/><text x="32" y="41" text-anchor="middle" fill="#fbfaf7" font-family="Georgia,serif" font-size="29">RT</text></svg>')
  layout(home(),'index.html')
@@ -176,7 +187,7 @@ def main():
    else:z.write(f,relative)
   z.writestr('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('  <url><loc>'+E(url)+'</loc></url>\n' for url in page_urls)+'</urlset>\n')
   z.writestr('robots.txt','User-agent: *\nAllow: /\nDisallow: /_source/\n\nSitemap: '+GITHUB_SITE_URL+'sitemap.xml\n')
-  for f in [ROOT/'build.py',ROOT/'README.md',ROOT/'SOURCE_NOTES.md',ROOT/'GITHUB_PAGES.md',*sorted((ROOT/'content').glob('*.json')),*sorted((ROOT/'assets').glob('*'))]:
+  for f in [ROOT/'build.py',ROOT/'README.md',ROOT/'SOURCE_NOTES.md',ROOT/'GITHUB_PAGES.md',*sorted((ROOT/'content').glob('*.json')),*sorted((ROOT/'assets').glob('*')),*sorted((ROOT/'illustrations').glob('*.py'))]:
    if f.exists():z.write(f,'_source/'+str(f.relative_to(ROOT)))
   z.writestr('README.md',(ROOT/'GITHUB_PAGES.md').read_text())
  print('Built',len(list(DIST.rglob('*.html'))),'HTML pages and GitHub Pages download.')

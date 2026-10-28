@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /_source/
 
-Sitemap: https://k-nic.github.io/sitemap.xml
+Sitemap: https://rustem-takhanov.github.io/sitemap.xml
