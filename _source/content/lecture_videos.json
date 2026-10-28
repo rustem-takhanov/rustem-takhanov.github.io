@@ -1,0 +1,40 @@
+[
+  {
+    "slug": "autoencoders",
+    "title": "Autoencoders",
+    "videos": [
+      {"label": "Part 1", "url": "https://www.youtube.com/watch?v=QEw-oABmC0c"},
+      {"label": "Part 2", "url": "https://www.youtube.com/watch?v=h7hvv83UBg8"}
+    ]
+  },
+  {
+    "slug": "low-rank-optimization",
+    "title": "Low-rank optimization",
+    "videos": [
+      {"label": "Watch lecture", "url": "https://www.youtube.com/watch?v=iwgEhIwDhqY"}
+    ]
+  },
+  {
+    "slug": "structured-prediction",
+    "title": "Structured prediction",
+    "videos": [
+      {"label": "Watch lecture", "url": "https://www.youtube.com/watch?v=r3N5m5Iue0I"}
+    ]
+  },
+  {
+    "slug": "distances-based-on-moments",
+    "title": "Distances between distributions based on moments",
+    "language": "Russian",
+    "videos": [
+      {"label": "Watch lecture", "url": "https://www.youtube.com/watch?v=hKnIVVnB1hY"}
+    ]
+  },
+  {
+    "slug": "general-mmd",
+    "title": "General MMD",
+    "language": "Russian",
+    "videos": [
+      {"label": "Watch lecture", "url": "https://www.youtube.com/watch?v=fedcUkTZ6EY"}
+    ]
+  }
+]

@@ -1,13 +1,15 @@
 # Rustem Takhanov — GitHub Pages publishing guide
 
 This folder contains the preliminary academic website: 29 publications, Talks
-(including AIST 2026), Links, the teaching archive, all local images and assets (including 29 original research illustrations),
+(including AIST 2026 and the SCAI seminar), Teaching with six lecture videos and the course archive,
+Miscellaneous with five press articles, Links, and all local images and assets
+(36 research illustrations across 29 paper pages: 11 figures for the four kissing-number papers and 25 other illustrations),
 and editable source in `_source/`. The site is already built; no installation
 or build command is needed to publish it. Linked papers, videos, and other
 external resources remain hosted by their original providers.
 
 The package is configured for **https://rustem-takhanov.github.io/** and includes canonical
-URLs for all 34 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
+URLs for all 35 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
 
 ## If the site is currently at /takhanov/
 
@@ -28,11 +30,15 @@ Pages deployment finishes. Renaming the repository preserves its files.
    any files or settings you still need.
 2. Extract the downloaded ZIP on your computer.
 3. In the repository, choose **Add file → Upload files**. Open the extracted
-   folder and drag **its contents** into the upload area. Include the folders
-   `assets`, `publications`, `talks`, `links`, `teaching`, and `_source`, and the
+   folder and upload the website files first. Include the folders
+   `assets`, `publications`, `talks`, `teaching`, `miscellaneous`, `links`, and the
    files `index.html`, `sitemap.xml`, `robots.txt`, `README.md`, and `.nojekyll`.
    The root `index.html` must appear at the top level of the repository.
    Do not upload the ZIP itself or put everything inside an extra outer folder.
+   GitHub's browser uploader accepts at most 100 files at once, so upload
+   `_source` in a separate second batch if you want to keep the editable source
+   in the repository. It is not needed to display the website. Keep it locally
+   in either case so you can rebuild later.
 4. Use the commit message **Publish preliminary academic website** and commit
    directly to **main**. If you chose a new branch, merge its pull request into
    main before continuing.
@@ -44,7 +50,7 @@ Pages deployment finishes. Renaming the repository preserves its files.
    Enable **Enforce HTTPS** if the option is available and not already enabled.
 7. Allow up to ten minutes, then open **https://rustem-takhanov.github.io/** in a private
    browser window to confirm that visitors can see it without signing in.
-   Also check `/publications/`, `/talks/`, and `/sitemap.xml`.
+   Also check `/publications/`, `/talks/`, `/teaching/`, `/miscellaneous/`, and `/sitemap.xml`.
    If publishing fails, inspect the repository's **Actions** tab for the
    Pages deployment status and error message.
 
@@ -89,6 +95,11 @@ If you choose a different GitHub username, a project subpath, or a custom
 domain, first change `github_pages_url` in `_source/content/site.json` to the
 full intended website address, including its trailing slash, then rebuild.
 Internal links are relative and support either a user site or project subpath.
+
+The builder reads and writes UTF-8 explicitly so mathematical symbols are
+preserved on Windows and other systems. It replaces the generated `_source/dist/`
+directory on every build; make lasting edits in `_source/content/`,
+`_source/assets/`, or `_source/illustrations/`, rather than in that generated directory.
 
 ## Official instructions
 

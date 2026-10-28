@@ -7,6 +7,20 @@
     "venue_url": "https://aistconf.org/",
     "type": "Invited talk",
     "description": "Invited talk at AIST — Analysis of Images, Social Networks and Texts — on searching for kissing configurations in twelve dimensions.",
-    "video": "dEu_OmNtz8E"
+    "video": "dEu_OmNtz8E",
+    "venue_label": "AIST website"
+  },
+  {
+    "slug": "scai-2026-beyond-840",
+    "title": "Beyond 840—An 841-Point Kissing Arrangement in R¹²",
+    "year": 2026,
+    "date": "2026-09-03",
+    "date_label": "3 September 2026",
+    "venue": "SCAI · Nazarbayev University",
+    "venue_url": "https://scai.nu.edu.kz/news/tpost/nl8syamhf1-scai-hosts-two-seminars-exploring-algebr",
+    "venue_label": "Seminar report",
+    "type": "Seminar talk",
+    "url": "https://scai.nu.edu.kz/news/tpost/nl8syamhf1-scai-hosts-two-seminars-exploring-algebr",
+    "description": "A seminar on the computational search for an 841-point kissing arrangement in twelve dimensions, its geometric structure, and its relationship to known 840-point configurations."
   }
 ]

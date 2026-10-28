@@ -9,8 +9,8 @@ from illustrations import build_illustrations
 
 ROOT=Path(__file__).resolve().parent
 DIST=ROOT/'dist'
-PUBS=json.loads((ROOT/'content/publications.json').read_text())
-GITHUB_SITE_URL=json.loads((ROOT/'content/site.json').read_text())['github_pages_url'].rstrip('/')+'/'
+PUBS=json.loads((ROOT/'content/publications.json').read_text(encoding='utf-8'))
+GITHUB_SITE_URL=json.loads((ROOT/'content/site.json').read_text(encoding='utf-8'))['github_pages_url'].rstrip('/')+'/'
 BY_SLUG={p['slug']:p for p in PUBS}
 FIGURES=build_illustrations()
 if set(FIGURES)!=set(BY_SLUG):
@@ -36,8 +36,8 @@ ICONS={
 def icon(name):return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">'+ICONS.get(name,ICONS['external'])+'</svg>'
 def internal(slug):return R+'publications/'+slug+'/'
 def authors(p):return ', '.join('<strong>'+E(a)+'</strong>' if a=='Rustem Takhanov' else E(a) for a in p['authors'])
-def external(url,label,cls='resource-link',ico='external'):
- return '<a class="'+cls+'" href="'+E(url,quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(label)+icon(ico)+'</a>'
+def external(url,label,cls='resource-link',ico='external',aria_label=None):
+ return '<a class="'+cls+'" href="'+E(url,quote=True)+'"'+(' aria-label="'+E(aria_label,quote=True)+'"' if aria_label else '')+' target="_blank" rel="noopener noreferrer">'+E(label)+icon(ico)+'</a>'
 def resource_links(p,detail=True):
  selected=[l for l in p['resources'] if l['label']!='arXiv'][:5]
  result=''.join(external(l['url'],l['label'],ico='code' if l['label']=='Code' else 'external') for l in selected)
@@ -67,7 +67,7 @@ def cell_svg():
 
 def layout(body,path,title='Rustem Takhanov',active='',description=None):
  prefix='../'*(len(Path(path).parts)-1) or './'
- nav=''.join('<a href="'+R+route+'/"'+(' aria-current="page"' if active==route else '')+'>'+label+'</a>' for route,label in [('publications','Publications'),('talks','Talks'),('links','Links')])
+ nav=''.join('<a href="'+R+route+'/"'+(' aria-current="page"' if active==route else '')+'>'+label+'</a>' for route,label in [('publications','Publications'),('talks','Talks'),('teaching','Teaching'),('miscellaneous','Miscellaneous'),('links','Links')])
  social=''.join('<a href="'+E(url,quote=True)+'"'+(' target="_blank" rel="noopener noreferrer"' if url.startswith('https') else '')+'>'+icon(ico)+label+'</a>' for ico,label,url in [
   ('mail','Email','mailto:rustem.takhanov@nu.edu.kz'),('scholar','Google Scholar','https://scholar.google.com/citations?user=DjIrpP8AAAAJ&hl=en'),('code','GitHub','https://github.com/k-nic'),('building','University profile','https://research.nu.edu.kz/en/persons/rustem-takhanov/')])
  description=description or 'Rustem Takhanov, Assistant Professor of Mathematics at Nazarbayev University. Research in machine learning, kernel methods, constraint satisfaction, and kissing arrangements.'
@@ -78,7 +78,7 @@ def layout(body,path,title='Rustem Takhanov',active='',description=None):
 <body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="@ROOT@" aria-label="Rustem Takhanov home"><span class="monogram">RT</span><span>Rustem Takhanov</span></a><nav class="nav" aria-label="Main navigation">'''+nav+'''</nav></div></header>
 <div class="layout"><aside class="sidebar" aria-label="Profile"><img class="portrait" src="@ROOT@assets/portrait.jpg" width="142" height="142" alt="Rustem Takhanov"><h2 class="profile-name">Rustem Takhanov</h2><p class="profile-role"><strong>Assistant Professor</strong><br>Department of Mathematics<br>Nazarbayev University</p><p class="profile-location">'''+icon('pin')+'''Astana, Kazakhstan</p><div class="profile-links">'''+social+'''</div><div class="profile-note">Mathematics &amp; discovery</div></aside>
 <main id="main">'''+body+'''</main></div><footer class="site-footer"><p><span class="footer-mark">RT</span> © 2026 Rustem Takhanov</p><p>Nazarbayev University · Astana, Kazakhstan &nbsp; / &nbsp; <a href="@ROOT@links/">Contact &amp; resources</a></p></footer></body></html>'''
- out=DIST/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc.replace(R,prefix))
+ out=DIST/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_text(doc.replace(R,prefix), encoding='utf-8')
 
 def recent_row(slug):
  p=BY_SLUG[slug]
@@ -117,8 +117,35 @@ def bibtex(p):
 
 def paper_illustration(p):
  f=FIGURES[p['slug']]
+ if 'plate' in f:return plate_html(f['plate'])
  src=R+'assets/papers/'+p['slug']+'.svg'
  return '<figure class="paper-visual"><a class="paper-visual-image" href="'+src+'" target="_blank" rel="noopener" aria-label="View full-size illustration for '+E(p['title'],quote=True)+'"><img src="'+src+'" width="1000" height="480" alt="'+E(f['alt'],quote=True)+'" decoding="async"></a><figcaption><div class="paper-visual-meta"><span>'+E(f['kind'])+'</span><a href="'+src+'" target="_blank" rel="noopener">View full size '+icon('external')+'</a></div><p>'+E(f['caption'])+' <a class="visual-source" href="'+E(f['source_url'],quote=True)+'" target="_blank" rel="noopener noreferrer">Research source '+icon('external')+'</a></p></figcaption></figure>'
+
+def plate_image(fig,label,lazy=True):
+ src=R+'assets/papers/'+fig['file']
+ return '<a class="plate-image" href="'+src+'" target="_blank" rel="noopener" aria-label="View full size: '+E(label,quote=True)+'"><img src="'+src+'" width="'+str(fig['w'])+'" height="'+str(fig['h'])+'" alt="'+E(fig['alt'],quote=True)+'" decoding="async"'+(' loading="lazy"' if lazy else '')+'></a>'
+
+def swatches(colours):
+ return '<span class="plate-swatches" aria-hidden="true">'+''.join('<span class="sw" style="background:'+c+'"></span>' for c in colours)+'</span>'
+
+def plate_html(pl):
+ hero=pl['hero']
+ full=R+'assets/papers/'+hero['file']
+ h='<section class="plate" aria-labelledby="plate-title"><header class="plate-head"><p class="plate-eyebrow">'+E(pl['eyebrow'])+'</p><h2 class="plate-title" id="plate-title">'+E(pl['title'])+'</h2><p class="plate-lede">'+E(pl['lede'])+'</p></header>'
+ h+='<figure class="plate-hero">'+plate_image(hero,pl['title'],lazy=False)+'<figcaption>'+E(hero['caption'])+' <a class="plate-link" href="'+full+'" target="_blank" rel="noopener">View full size'+icon('external')+'</a></figcaption></figure>'
+ h+='<div class="plate-ledger'+(' cols-2' if len(pl['ledger'])==4 else '')+'">'+''.join('<div class="plate-part">'+swatches(part['swatches'])+'<div><h3>'+E(part['name'])+' <span class="num">'+E(part['count'])+'</span></h3><p>'+E(part['text'])+'</p></div></div>' for part in pl['ledger'])+'</div>'
+ if pl.get('census'):
+  c=pl['census'];total=sum(n for n,_,_ in c['parts'])
+  h+='<figure class="plate-census"><figcaption>'+E(c['label'])+'</figcaption><div class="census-bar" role="img" aria-label="'+E(', '.join(str(n)+' '+name for n,_,name in c['parts']),quote=True)+'">'+''.join('<span style="flex:'+str(n)+' 1 0;background:'+col+'"></span>' for n,col,_ in c['parts'])+'</div><ul class="census-key">'+''.join('<li>'+swatches([col])+'<span class="num">'+'{:,}'.format(n)+'</span> '+E(name)+'</li>' for n,col,name in c['parts'])+'<li class="census-total"><span class="num">'+'{:,}'.format(total)+'</span> in all</li></ul></figure>'
+ if pl.get('table'):
+  t=pl['table']
+  h+='<div class="plate-table-wrap"><table class="plate-table"><caption>'+E(t['caption'])+'</caption><thead><tr>'+''.join('<th scope="col"'+(' class="n"' if i in (1,2,3) else '')+'>'+E(x)+'</th>' for i,x in enumerate(t['head']))+'</tr></thead><tbody>'+''.join('<tr>'+''.join(('<th scope="row" class="n">' if i==0 else '<td'+(' class="n"' if i in (1,2,3) else '')+'>')+E(x)+('</th>' if i==0 else '</td>') for i,x in enumerate(row))+'</tr>' for row in t['rows'])+'</tbody></table></div>'
+ figs=''.join('<figure class="plate-fig"><h3>'+E(fig['title'])+'</h3>'+plate_image(fig,fig['title'])+'<figcaption>'+E(fig['caption'])+'</figcaption></figure>' for fig in pl['figs'])
+ notes='<div class="plate-notes"><h3>Reading the drawings</h3><ul>'+''.join('<li><b>'+E(a)+'</b> '+E(b)+'</li>' for a,b in pl['notes'])+'</ul></div>'
+ if len(pl['figs'])==1:h+='<div class="plate-figs single">'+figs+notes+'</div>'
+ else:h+='<div class="plate-figs">'+figs+'</div>'+notes
+ h+='<p class="plate-source">All drawings are original and computed from the definitions in the paper. <a class="visual-source" href="'+E(pl['source_url'],quote=True)+'" target="_blank" rel="noopener noreferrer">Research source '+icon('external')+'</a></p></section>'
+ return h
 
 def publication_detail(p):
  body='<a class="back-link" href="'+R+'publications/">'+icon('back')+' All publications</a><article><header class="article-head"><div class="article-meta"><span>'+str(p['year'])+'</span><span>·</span><span>'+E(p['venue'])+'</span><span class="tag">'+p['topic']+'</span></div><h1 class="article-title">'+E(p['title'])+'</h1><p class="authors">'+authors(p)+'</p>'+paper_actions(p)+'</header>'+paper_illustration(p)+'<section class="article-text"><h2>About this paper</h2><p class="lead">'+E(p['summary'])+'</p><p>'+E(p['detail'])+'</p></section>'
@@ -132,9 +159,15 @@ def publication_detail(p):
  return body
 
 def talks():
- body='''<header class="page-head"><p class="eyebrow">Presentations &amp; discussion</p><h1>Talks</h1><p>Conference presentations, posters, and recorded research talks.</p></header>'''
- for talk in json.loads((ROOT/'content/talks.json').read_text()):
-  body+='<article class="talk-row" id="'+E(talk['slug'],quote=True)+'"><div class="talk-date">'+str(talk['year'])+'</div><div><div class="talk-venue"><a href="'+E(talk['venue_url'],quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(talk['venue'])+'</a> · '+E(talk['type'])+'</div><h2><a href="https://www.youtube.com/watch?v='+talk['video']+'" target="_blank" rel="noopener noreferrer">'+E(talk['title'])+'</a></h2><p>'+E(talk['description'])+'</p><div class="paper-actions">'+external(talk['venue_url'],'AIST website','button')+external('https://www.youtube.com/watch?v='+talk['video'],'Video','button')+'</div>'+video_block(talk)+'</div></article>'
+ body='''<header class="page-head"><p class="eyebrow">Presentations &amp; discussion</p><h1>Talks</h1><p>Conference and seminar talks, posters, and recorded presentations.</p></header>'''
+ for talk in json.loads((ROOT/'content/talks.json').read_text(encoding='utf-8')):
+  url=talk.get('url') or 'https://www.youtube.com/watch?v='+talk['video']
+  when=' · <time datetime="'+E(talk['date'],quote=True)+'">'+E(talk['date_label'])+'</time>' if talk.get('date') else ''
+  actions=external(talk['venue_url'],talk.get('venue_label','Event page'),'button')
+  if talk.get('video'):actions+=external('https://www.youtube.com/watch?v='+talk['video'],'Video','button')
+  body+='<article class="talk-row" id="'+E(talk['slug'],quote=True)+'"><div class="talk-date">'+str(talk['year'])+'</div><div><div class="talk-venue"><a href="'+E(talk['venue_url'],quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(talk['venue'])+'</a> · '+E(talk['type'])+when+'</div><h2><a href="'+E(url,quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(talk['title'])+'</a></h2><p>'+E(talk['description'])+'</p><div class="paper-actions">'+actions+'</div>'
+  if talk.get('video'):body+=video_block(talk)
+  body+='</div></article>'
  for slug,desc in [('conditional-krr','Conference materials for work with Zhenisbek Assylbekov on conditional kernel ridge regression.'),('intrinsic-dimensions','A presentation on intrinsic dimension, kernel geometry, and learning guarantees. Slides and the research poster are available.'),('induced-fixed-template-csps','A recorded presentation on algebraic approaches to fixed-template constraint satisfaction problems.')]:
   p=BY_SLUG[slug]
   keep=['Video','Slides','Poster','ICML 2026']
@@ -151,26 +184,50 @@ def links():
  return '''<header class="page-head"><p class="eyebrow">Elsewhere &amp; resources</p><h1>Links</h1><p>Research profiles, teaching materials, and useful resources.</p></header><section class="resource-group"><h2>Find me online</h2>'''+link_row('Google Scholar','Publications and citations.','https://scholar.google.com/citations?user=DjIrpP8AAAAJ&hl=en')+link_row('GitHub','Code, computational experiments, and research materials.','https://github.com/k-nic')+link_row('Nazarbayev University','My institutional profile and research activity.','https://research.nu.edu.kz/en/persons/rustem-takhanov/')+'''</section><section class="resource-group"><h2>Teaching</h2>'''+link_row('Course materials','Data Analysis and Statistical Learning; Optimization Methods and Techniques. Spring 2019.',R+'teaching/',False)+'''</section><section class="resource-group"><h2>On my reading list</h2>'''+link_row('Off the Convex Path','Perspectives on optimization and machine learning.','https://www.offconvex.org/')+link_row('Alpha Vantage','Financial market data and APIs.','https://www.alphavantage.co/')+link_row('Digital library genlibrusec','A digital library catalog.','http://gen.lib.rus.ec/')+'''</section><section class="resource-group"><h2>Get in touch</h2>'''+link_row('Email','rustem.takhanov@nu.edu.kz','mailto:rustem.takhanov@nu.edu.kz',False)+link_row('PGP public key','Public key for encrypted correspondence.','https://drive.google.com/file/d/1xEQizYiVIZcfARuZACGXgnUNblOkgNZV/view?usp=sharing')+'</section>'
 
 def teaching():
- rows=json.loads((ROOT/'content/teaching.json').read_text())
- body='''<a class="back-link" href="@ROOT@links/">'''+icon('back')+''' Links &amp; resources</a><header class="page-head"><p class="eyebrow">Teaching archive · Spring 2019</p><h1>Course materials</h1><p>Lecture notes, readings, and course topics.</p></header><section class="section"><h2>Data Analysis and Statistical Learning</h2><ul class="teaching-list">'''
+ rows=json.loads((ROOT/'content/teaching.json').read_text(encoding='utf-8'))
+ videos=json.loads((ROOT/'content/lecture_videos.json').read_text(encoding='utf-8'))
+ body='''<header class="page-head"><p class="eyebrow">Lectures &amp; learning</p><h1>Teaching</h1><p>Recorded lectures and course materials on machine learning, mathematics, and optimization.</p></header><section class="recordings" aria-labelledby="recordings-title"><h2 id="recordings-title">Video recordings of online lectures <span class="heading-note">(given during COVID)</span></h2><p class="section-intro">Browse by topic. The recordings open on YouTube.</p><ol class="lecture-list">'''
+ for n,topic in enumerate(videos,1):
+  badge='<span class="language-badge">In '+E(topic['language'])+'</span>' if topic.get('language') else ''
+  actions=''.join(external(v['url'],v['label'],'button lecture-button','play',v['label']+' — '+topic['title']+' (YouTube)') for v in topic['videos'])
+  body+='<li class="lecture-row" id="'+E(topic['slug'],quote=True)+'"><span class="lecture-number" aria-hidden="true">'+f'{n:02d}'+'</span><div><div class="lecture-heading"><h3>'+E(topic['title'])+'</h3>'+badge+'</div><div class="lecture-actions">'+actions+'</div></div></li>'
+ body+='''</ol></section><section class="section course-materials" aria-labelledby="course-materials-title"><div class="section-top"><h2 id="course-materials-title">Course materials</h2><span class="archive-term">Spring 2019</span></div><details class="course-archive"><summary>Data Analysis and Statistical Learning</summary><ul class="teaching-list">'''
  for row in rows:
   body+='<li><h3>'+E(row['title'])+'</h3><div class="resource-links">'+''.join(external(l['url'],l['label'].strip()) for l in row['links'])+'</div></li>'
- body+='</ul></section><section class="section"><h2>Optimization Methods and Techniques</h2><ul class="syllabus">'
+ body+='</ul></details><details class="course-archive"><summary>Optimization Methods and Techniques</summary><ul class="syllabus">'
  topics=['Nonlinear programming: maxima and minima; first- and second-order conditions.','Numerical methods for unconstrained optimization: Newton and quasi-Newton methods.','Constrained optimization: optimality conditions for equality and inequality constraints.','Gradient projection, Lagrangian relaxation, and penalty methods.','Linear programming: polyhedra, extreme points, vertices, and basic feasible solutions.','The simplex method, sensitivity analysis, and strong and weak duality.','Network flows, the network simplex algorithm, maximum flows, assignment, and shortest paths.','Integer programming: exact and approximate methods, relaxation, and branch and bound.','Multi-objective optimization: partial orders, efficiency, scalarization, and applications.','Goal programming: principal results and applications.']
- return body+''.join('<li>'+E(t)+'</li>' for t in topics)+'</ul></section>'
+ return body+''.join('<li>'+E(t)+'</li>' for t in topics)+'</ul></details></section>'
+
+def miscellaneous():
+ items=json.loads((ROOT/'content/press.json').read_text(encoding='utf-8'))
+ body='''<header class="page-head"><p class="eyebrow">Media &amp; interviews</p><h1>Miscellaneous</h1><p>News coverage and conversations about mathematics, research, and artificial intelligence.</p></header><section aria-labelledby="press-title"><h2 id="press-title">In Press</h2><p class="section-intro">Selected articles and interviews in the media.</p><ul class="press-list">'''
+ for item in items:
+  publisher='<span class="press-publisher"'+(' lang="'+E(item['publisher_lang'],quote=True)+'"' if item.get('publisher_lang') else '')+'>'+E(item['publisher'])+'</span>'
+  body+='<li><article class="press-row"><div class="press-meta">'+publisher+'<time datetime="'+E(item['date'],quote=True)+'">'+E(item['date_label'])+'</time><span class="language-badge">'+E(item['language'])+'</span></div><h3 lang="'+E(item['lang'],quote=True)+'"><a href="'+E(item['url'],quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(item['title'])+' '+icon('external')+'</a></h3><p>'+E(item['description'])+'</p></article></li>'
+ return body+'</ul></section>'
 
 def main():
- DIST.mkdir(exist_ok=True);(DIST/'assets').mkdir(exist_ok=True)
+ # dist is generated output. Rebuild it so removed pages, old figures, and
+ # temporary preview files cannot leak into the deployment or the ZIP.
+ DIST.mkdir(exist_ok=True)
+ for old in DIST.iterdir():
+  if old.is_dir() and not old.is_symlink():shutil.rmtree(old)
+  else:old.unlink()
+ (DIST/'assets').mkdir()
  for f in (ROOT/'assets').iterdir():shutil.copy2(f,DIST/'assets'/f.name)
  (DIST/'assets/papers').mkdir(exist_ok=True)
- for slug,figure in FIGURES.items():(DIST/'assets/papers'/f'{slug}.svg').write_text(figure['svg'])
- (DIST/'assets/cell.svg').write_text(cell_svg())
- (DIST/'assets/favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="32" fill="#246c67"/><text x="32" y="41" text-anchor="middle" fill="#fbfaf7" font-family="Georgia,serif" font-size="29">RT</text></svg>')
+ for slug,figure in FIGURES.items():
+  if 'plate' in figure:
+   for f in figure['files']:shutil.copy2(f,DIST/'assets/papers'/f.name)
+  else:(DIST/'assets/papers'/f'{slug}.svg').write_text(figure['svg'], encoding='utf-8')
+ (DIST/'assets/cell.svg').write_text(cell_svg(), encoding='utf-8')
+ (DIST/'assets/favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="32" fill="#246c67"/><text x="32" y="41" text-anchor="middle" fill="#fbfaf7" font-family="Georgia,serif" font-size="29">RT</text></svg>', encoding='utf-8')
  layout(home(),'index.html')
  layout(publications(),'publications/index.html','Publications — Rustem Takhanov','publications')
- layout(talks(),'talks/index.html','Talks — Rustem Takhanov','talks')
+ layout(talks(),'talks/index.html','Talks — Rustem Takhanov','talks','Research talks, seminars, posters, and recorded presentations by Rustem Takhanov.')
  layout(links(),'links/index.html','Links — Rustem Takhanov','links')
- layout(teaching(),'teaching/index.html','Teaching — Rustem Takhanov','links')
+ layout(teaching(),'teaching/index.html','Teaching — Rustem Takhanov','teaching','Online lecture recordings and course materials on autoencoders, low-rank optimization, structured prediction, and distances between distributions.')
+ layout(miscellaneous(),'miscellaneous/index.html','Miscellaneous — Rustem Takhanov','miscellaneous','Press coverage and interviews with Rustem Takhanov about mathematics, kissing arrangements, and artificial intelligence.')
  for p in PUBS:layout(publication_detail(p),'publications/'+p['slug']+'/index.html',p['title']+' — Rustem Takhanov','publications',p['summary'])
  (DIST/'.nojekyll').touch()
  download=DIST/'downloads';download.mkdir(exist_ok=True)
@@ -183,13 +240,13 @@ def main():
     url=GITHUB_SITE_URL+relative.as_posix().removesuffix('index.html')
     page_urls.append(url)
     metadata='<link rel="canonical" href="'+E(url,quote=True)+'"><meta property="og:url" content="'+E(url,quote=True)+'">'
-    z.writestr(relative.as_posix(),f.read_text().replace('</head>',metadata+'</head>'))
+    z.writestr(relative.as_posix(),f.read_text(encoding='utf-8').replace('</head>',metadata+'</head>'))
    else:z.write(f,relative)
   z.writestr('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('  <url><loc>'+E(url)+'</loc></url>\n' for url in page_urls)+'</urlset>\n')
   z.writestr('robots.txt','User-agent: *\nAllow: /\nDisallow: /_source/\n\nSitemap: '+GITHUB_SITE_URL+'sitemap.xml\n')
-  for f in [ROOT/'build.py',ROOT/'README.md',ROOT/'SOURCE_NOTES.md',ROOT/'GITHUB_PAGES.md',*sorted((ROOT/'content').glob('*.json')),*sorted((ROOT/'assets').glob('*')),*sorted((ROOT/'illustrations').glob('*.py'))]:
+  for f in [ROOT/'build.py',ROOT/'README.md',ROOT/'SOURCE_NOTES.md',ROOT/'GITHUB_PAGES.md',*sorted((ROOT/'content').glob('*.json')),*sorted((ROOT/'assets').glob('*')),*sorted((ROOT/'illustrations').glob('*.py')),*sorted((ROOT/'illustrations/kissing_svg').glob('*.svg')),*sorted((ROOT/'tools/kissing_figures').glob('*.py')),*sorted((ROOT/'tools/kissing_figures').glob('*.md'))]:
    if f.exists():z.write(f,'_source/'+str(f.relative_to(ROOT)))
-  z.writestr('README.md',(ROOT/'GITHUB_PAGES.md').read_text())
+  z.writestr('README.md',(ROOT/'GITHUB_PAGES.md').read_text(encoding='utf-8'))
  print('Built',len(list(DIST.rglob('*.html'))),'HTML pages and GitHub Pages download.')
 
 if __name__=='__main__':
