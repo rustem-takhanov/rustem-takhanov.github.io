@@ -755,5 +755,34 @@
       }
     ],
     "arxiv": null
+  },
+  {
+    "slug": "latin-cubes-4320",
+    "title": "Latin cubes of order 4 and 4320-point quaternionic constructions in ℝ¹⁶",
+    "citation_title": "Latin cubes of order {$4$} and {$4320$}-point quaternionic constructions in {$\\mathbb{R}^{16}$}",
+    "year": 2026,
+    "venue": "AIST 2026 · CCIS (to appear)",
+    "forthcoming": "To appear in the AIST 2026 proceedings, in Springer’s Communications in Computer and Information Science (CCIS) series.",
+    "topic": "Kissing numbers",
+    "authors": [
+      "Rustem Takhanov"
+    ],
+    "summary": "Constructs a family of 4,320-point kissing arrangements in sixteen dimensions using Latin cubes of order four and permutations of quaternionic levels.",
+    "detail": "All arrangements in the family are antipodal and infinitesimally jammed, and their frame operator is 270 times the identity. A computer-aided enumeration gives exactly 4,072,728,621 isometry classes, revealing a vast diversity of configurations with the same size as the Barnes–Wall arrangement.",
+    "resources": [
+      {
+        "label": "Paper PDF",
+        "url": "https://arxiv.org/pdf/2611.00927"
+      },
+      {
+        "label": "arXiv",
+        "url": "https://arxiv.org/abs/2611.00927"
+      },
+      {
+        "label": "AIST 2026",
+        "url": "https://aistconf.org/"
+      }
+    ],
+    "arxiv": "2611.00927"
   }
 ]

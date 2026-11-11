@@ -22,5 +22,19 @@
     "type": "Seminar talk",
     "url": "https://scai.nu.edu.kz/news/tpost/nl8syamhf1-scai-hosts-two-seminars-exploring-algebr",
     "description": "A seminar on the computational search for an 841-point kissing arrangement in twelve dimensions, its geometric structure, and its relationship to known 840-point configurations."
+  },
+  {
+    "slug": "icml-2026-conditional-krr",
+    "title": "Conditional KRR: Injecting Unpenalized Features into Kernel Methods with Applications to Kernel Thresholding",
+    "year": 2026,
+    "venue": "ICML 2026",
+    "venue_url": "https://icml.cc/virtual/2026/poster/65932",
+    "venue_label": "ICML conference page",
+    "url": "https://icml.cc/virtual/2026/poster/65932",
+    "type": "Recorded presentation",
+    "description": "Recorded presentation at ICML 2026 on conditional kernel ridge regression, joint work with Zhenisbek Assylbekov.",
+    "video": "39075523",
+    "video_provider": "slideslive",
+    "video_url": "https://slideslive.com/39075523/conditional-krr-injecting-unpenalized-features-into-kernel-methods-with-applications-to-kernel-thresholding"
   }
 ]

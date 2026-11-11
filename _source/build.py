@@ -102,16 +102,23 @@ def publications():
  for p in reversed(PUBS):groups[p['year']].append(p)
  return '''<header class="page-head"><p class="eyebrow">Research &amp; writing</p><h1>Publications</h1><p>Selected papers on kissing numbers, kernel methods, constraint satisfaction, language modeling, and other machine learning topics. Explore each paper for a short overview and accompanying resources.</p></header><div class="search-box">'''+icon('search')+'''<label class="sr-only" for="publication-search" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Search publications</label><input id="publication-search" type="search" placeholder="Search by title, author, keyword, or year…" autocomplete="off"><button class="search-clear" aria-label="Clear search" hidden>'''+icon('close')+'''</button></div><div class="filter-line"><div class="filters" role="group" aria-label="Filter publications by topic">'''+''.join('<button class="filter" data-topic="'+t+'" aria-pressed="'+str(t=='All').lower()+'">'+label+'</button>' for t,label in [('All','All research'),('Kissing numbers','Kissing numbers'),('Kernel methods','Kernel methods'),('Constraint satisfaction','Constraint satisfaction'),('Language modeling','Language modeling'),('Other ML','Other ML')])+'''</div><span id="result-count" class="results-count" role="status" aria-live="polite">'''+str(len(PUBS))+''' publications</span></div><div id="publication-list">'''+''.join('<section class="year-group" aria-label="Publications from '+str(y)+'"><h2 class="year-heading">'+str(y)+'</h2>'+''.join(pub_row(p) for p in groups[y])+'</section>' for y in sorted(groups,reverse=True))+'''</div><div id="no-results" class="no-results" hidden><h2>No matching publications</h2><p>Try another title, author, or research topic.</p><button class="button" id="reset-filters">Clear all filters</button></div>'''
 
+def video_url(p):
+ return p.get('video_url') or 'https://www.youtube.com/watch?v='+p['video']
+
 def video_block(p):
- return '<button class="video-cover" data-video="'+p['video']+'" data-title="'+E(p['title'],quote=True)+'"><span class="play-icon">'+icon('play')+'</span><strong>Watch the recorded presentation</strong><small>Load video from YouTube</small></button><p class="media-note">'+external('https://www.youtube.com/watch?v='+p['video'],'Open on YouTube instead')+'</p>'
+ if p.get('video_provider')=='slideslive':
+  # This ICML recording only permits embedding on icml.cc; link the full panel.
+  return '<a class="video-cover" href="'+E(video_url(p),quote=True)+'" target="_blank" rel="noopener noreferrer" aria-label="Watch the recorded presentation on SlidesLive (opens in a new tab)"><span class="play-icon">'+icon('play')+'</span><strong>Watch the recorded presentation</strong><small>Open recording on SlidesLive '+icon('external')+'</small></a><p class="media-note">'+external(video_url(p),'Open on SlidesLive')+'</p>'
+ return '<button class="video-cover" data-video="'+p['video']+'" data-title="'+E(p['title'],quote=True)+'"><span class="play-icon">'+icon('play')+'</span><strong>Watch the recorded presentation</strong><small>Load video from YouTube</small></button><p class="media-note">'+external(video_url(p),'Open on YouTube instead')+'</p>'
 
 def bibtex(p):
  # Minimal records deliberately omit unverified volume, pages, and DOI fields.
- venue=p['venue'];kind='misc' if venue in ['Preprint','Manuscript'] else ('inproceedings' if re.match(r'^(STACS|COCOON|ICML|ISAAC|SOFSEM|ICONIP|NAACL|EMNLP|COLING|UAI|AISTATS)',venue) else 'article')
- fields=[('title',p['title']),('author',' and '.join(', '.join(a.rsplit(' ',1)[::-1]) for a in p['authors'])),('year',str(p['year']))]
+ venue=p['venue'];kind='misc' if p.get('forthcoming') or venue in ['Preprint','Manuscript'] else ('inproceedings' if re.match(r'^(STACS|COCOON|ICML|ISAAC|SOFSEM|ICONIP|NAACL|EMNLP|COLING|UAI|AISTATS)',venue) else 'article')
+ fields=[('title',p.get('citation_title',p['title'])),('author',' and '.join(', '.join(a.rsplit(' ',1)[::-1]) for a in p['authors'])),('year',str(p['year']))]
  if kind!='misc':fields.append(('booktitle' if kind=='inproceedings' else 'journal',venue))
  if p.get('arxiv'):
   fields+=[('eprint',p['arxiv']),('archivePrefix','arXiv')]
+ if p.get('forthcoming'):fields.append(('note',p['forthcoming']))
  fields.append(('url',p['resources'][0]['url']))
  return '@'+kind+'{takhanov'+str(p['year'])+p['slug'].replace('-','')+',\n'+',\n'.join('  '+k+' = {'+v+'}' for k,v in fields)+'\n}'
 
@@ -148,7 +155,8 @@ def plate_html(pl):
  return h
 
 def publication_detail(p):
- body='<a class="back-link" href="'+R+'publications/">'+icon('back')+' All publications</a><article><header class="article-head"><div class="article-meta"><span>'+str(p['year'])+'</span><span>·</span><span>'+E(p['venue'])+'</span><span class="tag">'+p['topic']+'</span></div><h1 class="article-title">'+E(p['title'])+'</h1><p class="authors">'+authors(p)+'</p>'+paper_actions(p)+'</header>'+paper_illustration(p)+'<section class="article-text"><h2>About this paper</h2><p class="lead">'+E(p['summary'])+'</p><p>'+E(p['detail'])+'</p></section>'
+ status='<p class="publication-status">'+E(p['forthcoming'])+'</p>' if p.get('forthcoming') else ''
+ body='<a class="back-link" href="'+R+'publications/">'+icon('back')+' All publications</a><article><header class="article-head"><div class="article-meta"><span>'+str(p['year'])+'</span><span>·</span><span>'+E(p['venue'])+'</span><span class="tag">'+p['topic']+'</span></div><h1 class="article-title">'+E(p['title'])+'</h1><p class="authors">'+authors(p)+'</p>'+status+paper_actions(p)+'</header>'+paper_illustration(p)+'<section class="article-text"><h2>About this paper</h2><p class="lead">'+E(p['summary'])+'</p><p>'+E(p['detail'])+'</p></section>'
  if p.get('interactive'):
   body+='''<section class="article-section"><h2>A building block in four dimensions</h2><div class="geometry-panel"><div class="geometry-top"><strong>The regular 24-cell</strong><span>24 vertices &nbsp;·&nbsp; 96 edges</span></div><canvas id="cell-canvas" role="img" aria-label="An adjustable two-dimensional orthogonal projection of a regular 24-cell in four dimensions. Gold points are the eight signed coordinate vectors; green points are the sixteen half-integer vertices."></canvas><div class="geometry-controls"><label for="rotation">Rotation <input id="rotation" type="range" min="0" max="360" value="41" aria-label="Four-dimensional rotation in degrees"></label><button id="play-rotation" aria-pressed="false">Play</button><button id="reset-rotation">Reset</button></div></div><p class="geometry-caption">Rotate a 2D orthogonal projection of the 24-cell in ℝ⁴. Gold vertices are the eight signed coordinate vectors; green vertices are the sixteen vectors (±½, ±½, ±½, ±½). The projection illustrates one four-dimensional building block of the paper’s construction.</p></section>'''
  if p.get('video'):body+='<section class="article-section"><h2>Recorded presentation</h2>'+video_block(p)+'</section>'
@@ -161,14 +169,14 @@ def publication_detail(p):
 def talks():
  body='''<header class="page-head"><p class="eyebrow">Presentations &amp; discussion</p><h1>Talks</h1><p>Conference and seminar talks, posters, and recorded presentations.</p></header>'''
  for talk in json.loads((ROOT/'content/talks.json').read_text(encoding='utf-8')):
-  url=talk.get('url') or 'https://www.youtube.com/watch?v='+talk['video']
+  url=talk.get('url') or video_url(talk)
   when=' · <time datetime="'+E(talk['date'],quote=True)+'">'+E(talk['date_label'])+'</time>' if talk.get('date') else ''
   actions=external(talk['venue_url'],talk.get('venue_label','Event page'),'button')
-  if talk.get('video'):actions+=external('https://www.youtube.com/watch?v='+talk['video'],'Video','button')
+  if talk.get('video'):actions+=external(video_url(talk),'Video','button')
   body+='<article class="talk-row" id="'+E(talk['slug'],quote=True)+'"><div class="talk-date">'+str(talk['year'])+'</div><div><div class="talk-venue"><a href="'+E(talk['venue_url'],quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(talk['venue'])+'</a> · '+E(talk['type'])+when+'</div><h2><a href="'+E(url,quote=True)+'" target="_blank" rel="noopener noreferrer">'+E(talk['title'])+'</a></h2><p>'+E(talk['description'])+'</p><div class="paper-actions">'+actions+'</div>'
   if talk.get('video'):body+=video_block(talk)
   body+='</div></article>'
- for slug,desc in [('conditional-krr','Conference materials for work with Zhenisbek Assylbekov on conditional kernel ridge regression.'),('intrinsic-dimensions','A presentation on intrinsic dimension, kernel geometry, and learning guarantees. Slides and the research poster are available.'),('induced-fixed-template-csps','A recorded presentation on algebraic approaches to fixed-template constraint satisfaction problems.')]:
+ for slug,desc in [('intrinsic-dimensions','A presentation on intrinsic dimension, kernel geometry, and learning guarantees. Slides and the research poster are available.'),('induced-fixed-template-csps','A recorded presentation on algebraic approaches to fixed-template constraint satisfaction problems.')]:
   p=BY_SLUG[slug]
   keep=['Video','Slides','Poster','ICML 2026']
   resources=[l for l in p['resources'] if l['label'] in keep]

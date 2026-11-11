@@ -1,15 +1,15 @@
 # Rustem Takhanov — GitHub Pages publishing guide
 
-This folder contains the preliminary academic website: 29 publications, Talks
+This folder contains the preliminary academic website: 30 publications, Talks
 (including AIST 2026 and the SCAI seminar), Teaching with six lecture videos and the course archive,
 Miscellaneous with five press articles, Links, and all local images and assets
-(36 research illustrations across 29 paper pages: 11 figures for the four kissing-number papers and 25 other illustrations),
+(37 research illustrations across 30 paper pages: 11 figures for four kissing-number papers and 26 other illustrations),
 and editable source in `_source/`. The site is already built; no installation
 or build command is needed to publish it. Linked papers, videos, and other
 external resources remain hosted by their original providers.
 
 The package is configured for **https://rustem-takhanov.github.io/** and includes canonical
-URLs for all 35 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
+URLs for all 36 HTML pages, page descriptions, `sitemap.xml`, and `robots.txt`.
 
 ## If the site is currently at /takhanov/
 
