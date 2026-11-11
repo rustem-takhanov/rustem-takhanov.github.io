@@ -44,3 +44,5 @@ main{min-width:0}.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:upp
 @media(max-width:760px){.site-header{height:auto}.header-inner{flex-direction:column;align-items:flex-start;gap:10px;padding-top:16px}.brand>span:last-child{display:inline}.nav{height:auto;flex-wrap:wrap;gap:0 24px}.nav a{height:auto;min-height:44px;font-size:13px}.press-row h3{font-size:22px}.lecture-heading h3{font-size:21px}.course-materials{margin-top:36px}}
 @media(max-width:520px){.nav{width:100%;display:grid;grid-template-columns:repeat(3,max-content);gap:0 22px}.nav a{min-height:37px;font-size:12px}.lecture-row{grid-template-columns:24px minmax(0,1fr);gap:12px;padding:20px 0}.lecture-heading h3{font-size:21px}.press-meta{gap:6px 11px}.press-row{padding:21px 0}.course-materials .section-top{flex-wrap:wrap;gap:6px}.course-archive summary{font-size:19px;padding:15px}}
 @media print{.lecture-row,.press-row{break-inside:avoid}.language-badge{border:1px solid var(--line);background:none}.course-archive{border:0}}
+
+.publication-status{font-size:13px;line-height:1.75;color:var(--accent);border-left:2px solid #b7ccbd;padding-left:14px;margin:18px 0}
